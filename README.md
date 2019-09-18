@@ -208,7 +208,7 @@ app.use((err, req, res, next) => {
 We are going to make it so that when somebody submits the contact form, an email is sent to your email address. There are many different ways to send emails, but this example will use an npm package called [Nodemailer](https://nodemailer.com/about/) to send an email from a new email account to your personal one.
 
 - Set up a new [Gmail](https://mail.google.com/mail?hl=en-GB) account.
-- Once set up and logged into your new Gmail account, enable it as a [Less Secure App](https://myaccount.google.com/lesssecureapps?pli=1). This will allow you to send emails from JS using the email address and password.
+- Once set up and logged into your new Gmail account, enable it as a [Less Secure App](https://myaccount.google.com/lesssecureapps?pli=1). This will allow you to send emails from JS using the email address and password. As the name implies, there are more secure ways of sending emails, but they are much more complicated and this will be enough for our purposes.
 
 It is **REALLY IMPORTANT** that this sensitive information is not shared. To avoid this, we can set the email address and password as environment variables using another package called [dotenv](https://www.npmjs.com/package/dotenv).
 
