@@ -176,7 +176,7 @@ const { name } = req.body;
 res.render('contact', { name });
 ```
 
-- Alter the template to interpolate the provided data with the HTML that will be served up (again, this will vary massively based on the template engine you chose). Here is an example using EJS:
+- Alter the template to interpolate the provided data to be served up (again, this will vary massively based on the template engine you chose). Here is an example using EJS:
 
 ```ejs
 <!-- some HTML -->
