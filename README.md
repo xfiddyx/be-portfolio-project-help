@@ -203,4 +203,99 @@ app.use((err, req, res, next) => {
 
 ## Task 4 - Add Functionality to the Contact Form
 
+### Set Up
+
+We are going to make it so that when somebody submits the contact form, an email is sent to your email address. There are many different ways to send emails, but this example will use an npm package called [Nodemailer](https://nodemailer.com/about/) to send an email from a new email account to your personal one.
+
+- Set up a new [Gmail](https://mail.google.com/mail?hl=en-GB) account.
+- Once set up and logged into your new Gmail account, enable it as a [Less Secure App](https://myaccount.google.com/lesssecureapps?pli=1). This will allow you to send emails from JS using the email address and password.
+
+It is **REALLY IMPORTANT** that this sensitive information is not shared. To avoid this, we can set the email address and password as environment variables using another package called [dotenv](https://www.npmjs.com/package/dotenv).
+
+- Install `dotenv`
+
+```bash
+npm install dotenv
+```
+
+### Hide Those Deets
+
+- Create a file `.env` in the root of the project. This will contain sensitive information so make sure that it is `.gitignore`d:
+
+```bash
+touch .env
+echo .env >> .gitignore
+```
+
+- Add the email address, password as well as your own email address to the `.env` file:
+
+```
+GMAIL_ADDRESS=user@gmail.com
+GMAIL_PASS=supersecretpass
+DESTINATION_EMAIL_ADDRESS=me@email.com
+```
+
+- Use `.dotenv` to ensure these values are set as key-value pairs on Node's `process.env`:
+
+```js
+require('dotenv').config();
+
+console.log(process.env.GMAIL_ADDRESS);
+```
+
+### Send An Email From JS
+
+- Install `nodemailer`:
+
+```bash
+npm install nodemailer
+```
+
+- Create a function that sends an email to yourself. Check that it works by running it outside of the context of your Express application:
+
+```js
+const nodemailer = require('nodemailer');
+
+const sendMail = (name, email, subject, message) => {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.GMAIL_USER,
+    to: process.env.DESTINATION_EMAIL_ADDRESS,
+    subject,
+    text: `${name} has messaged you from ${email}.
+
+    ${message}
+    `,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
+sendMail('ant', 'ant@ant.com', 'greeting', 'hello!')
+  .then(() => console.log('success'))
+  .catch(console.log);
+```
+
+### Connecting the Form
+
+When a user submits the form, a `POST` request will be made to the server. Use your `sendMail` function to send an email to yourself containing the user submitted details before letting them know whether their request has been successful or not.
+
+```js
+const contact = (req, res, next) => {
+  const { name, email, subject, message } = req.body;
+  sendMail(name, email, subject, message)
+    .then(() => {
+      res.status(201).render('contact', { name });
+    })
+    .catch(next);
+};
+```
+
 ## Task 5 - Host Your Site
