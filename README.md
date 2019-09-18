@@ -132,6 +132,75 @@ exports.contact = (req, res, next) => {
 
 ## Task 3 - Use a Template Engine to Serve Dynamic Content
 
+Template engines are a way to add dynamic data into HTML templates. There are lots of [template engines](https://expressjs.com/en/guide/using-template-engines.html) available that can be used with Express. This README will use [Embedded JavaScript / EJS](https://ejs.co/) as an example - but feel free to experiment with other options!
+
+- Install your template engine:
+
+```bash
+npm install ejs
+```
+
+- Set the template engine in the express app. Notice that the template engine (`'ejs'` here) specified as a string, so there is no need to `require` the template engine module into our code.
+
+```js
+app.set('view engine', 'ejs');
+```
+
+Whatever your choice of view engine, the templates will need to be created in a new directory in the root of the server called `views`.
+
+- Create a "view". The file extension and way that the template is written will depend on the view engine that you have chosen (e.g. `./views/contact.ejs`).
+
+```html
+<!-- some HTML -->
+<h1>Thanks for contacting me!</h1>
+<p>I will get back to you shortly.</p>
+<!-- some more HTML -->
+```
+
+- Use the `.render` method on the request to serve up your template as HTML.
+
+```js
+exports.contact = (req, res, next) => {
+  // rest of controller...
+  res.render('contact');
+};
+```
+
+> Express-compliant template engines such as Pug and EJS export a function named `__express(filePath, options, callback)`, which is called by the `res.render()` function to render the template code.
+
+- Pass some data to the template as an object:
+
+```js
+// partial controller
+const { name } = req.body;
+res.render('contact', { name });
+```
+
+- Alter the template to interpolate the provided data with the HTML that will be served up (again, this will vary massively based on the template engine you chose). Here is an example using EJS:
+
+```ejs
+<!-- some HTML -->
+<h1>Thanks for contacting me, <%= name %>!</h1>
+<p>I will get back to you shortly.</p>
+<!-- some more HTML -->
+```
+
+There are many more powerful ways to use template engines. It is possible to iterate over arrays to produce some HTML for each element, to have a model fetch some data from a database or other source before adding it to the template, using [partials](https://medium.com/@henslejoseph/ejs-partials-f6f102cb7433) to avoid code duplication etc.
+
+- Experiment with the different ways you can use your template engine!
+- You could adjust your error handling so that it is a bit more human friendly too:
+
+```js
+app.use('/*', (req, res, next) => {
+  next({ status: 404, msg: 'Page Not Found' });
+});
+
+app.use((err, req, res, next) => {
+  const { msg = 'Internal Server Error', status = 500 } = err;
+  res.status(status).render('error', { status, msg });
+});
+```
+
 ## Task 4 - Add Functionality to the Contact Form
 
 ## Task 5 - Host Your Site
