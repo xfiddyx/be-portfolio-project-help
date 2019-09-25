@@ -13,6 +13,10 @@
 - Manage sensitive data so that it is hidden from others
 - Host an Express server
 
+## Introduction
+
+So far on the course, you have learnt how to create HTTP servers using Express. Usually, you have created a server that allows a client (some other computer) to request some JSON data from your server. This allows for a client application(s), or website(s), to display that data however they like - there is even the possibility for them to consume multiple APIs in a single app. During the front-end block, you will learn how to create modern [single-page applications](https://en.wikipedia.org/wiki/Single-page_application) built with [Reactjs](https://reactjs.org/docs/hello-world.html) that interact with the kinds of API that you will have already started creating. This is a really good approach for building complex, data-driven applications. However, this can sometimes be overkill.
+
 ## Task 1 - Create a Static Server
 
 - Create an [Express](https://expressjs.com/) server.
