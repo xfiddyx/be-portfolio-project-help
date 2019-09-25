@@ -2,6 +2,17 @@
 
 **Don't fork this repository - create your own!**
 
+## Learning Objectives
+
+- Understand traditional web architecture
+- Know the benefits and limitations of using a static server
+- Learn how to set up a static server with [Express](https://expressjs.com/)
+- Use native HTML form behaviour to send data to your server
+- Use a template engine to create some dynamically created server-side rendered HTML
+- Send an email to yourself account when a user submits a form
+- Manage sensitive data so that it is hidden from others
+- Host an Express server
+
 ## Task 1 - Create a Static Server
 
 - Create an [Express](https://expressjs.com/) server.
