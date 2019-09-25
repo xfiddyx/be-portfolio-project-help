@@ -19,7 +19,7 @@ So far on the course, you have learnt how to create HTTP servers using Express. 
 
 ## Task 1 - Create a Static Server
 
-Websites that consist of a few HTML pages without complex front-end interactions can be created easily using a static server. A static server is a server that serves up content that does not change over time because of client interaction. For example, a `GET` request to `http://www.my-website.com/about.html` will cause the server running at that address to look for a file called `about.html` in a directory specified by the person who set up the server. A good example of a static server is [nginx](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/) but we can achieve similar results using Node.
+Websites that consist of a few HTML pages without complex front-end interactions can be created easily using a static server. A static server is a server that serves up content that does not change over time because of client interaction. For example, a `GET` request to `http://www.my-website.com/about.html` will cause the server running at that address to look for a file called `about.html` in a directory specified by the person who set up the server. A good example of a static server is [nginx](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/). There are also a bunch of services that will serve static content on our behalf, such as [GitHub Pages](https://pages.github.com/) for serving static content but we can achieve similar results using Node.
 
 - Create an [Express](https://expressjs.com/) server.
 
