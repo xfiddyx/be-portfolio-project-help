@@ -316,3 +316,165 @@ const contact = (req, res, next) => {
 ```
 
 ## Task 5 - Host Your Site
+
+There are lots of ways to host your server. We could buy a dedicated computer, connect it to the internet and run the server code on there but that comes with a bunch of problems:
+
+- We have to pay for a computer.
+- If there isn't much traffic to the server, we are effectively wasting the unused resources on that computer.
+- If there is too much traffic to the server, we would have to buy a new computer to handle it.
+- We would have to maintain that computer ourselves, making sure that it is constantly running.
+
+Not such a good idea to do this ourselves then.
+
+[Heroku](https://devcenter.heroku.com/articles/how-heroku-works) offers a good solution to this problem. It allows us to push up our source code using Git. Heroku installs any dependencies specified in our `package.json`, and runs the app in a "Dyno" (a lightweight, secure, virtualized Unix container). This means that our site could easily be scaled up when it, inevitably, becomes super popular. Heroku also comes with a pretty generous free tier.
+
+Heroku has wonderful [documentation](https://devcenter.heroku.com/). You can find great guides to what we are doing there, as well as a bunch of other useful material.
+
+### 1. Sign Up For a Heroku Account
+
+[Sign up](https://signup.heroku.com/).
+
+### 2. Install the Heroku CLI
+
+On macOS:
+
+```bash
+brew tap heroku/brew && brew install heroku
+```
+
+...or Ubuntu:
+
+```bash
+sudo snap install --classic heroku
+```
+
+### 3. Create a Heroku App
+
+Log into Heroku using their command line interface:
+
+```bash
+heroku login
+```
+
+Create an app in an active git directory. Doing this in the folder where your server exists is a good start, as this is what you will be hosting.
+
+```bash
+heroku create your-app-name
+```
+
+Here `your-app-name` should be the name you want to give your application. If you don't specify an app name, you'll get a random one which can sometimes be a bit iffy.
+
+This command will both create an app on Heroku for your account. It will also add a new `remote` to your git repository.
+Check this by looking at your git remotes:
+
+```bash
+git remote -v
+```
+
+You should see that you now have _two_ git remotes: `origin` and `heroku`
+
+### 4. Deploy
+
+```bash
+git push heroku master
+```
+
+Preview your app:
+
+```bash
+heroku open
+```
+
+You should see an error page. There are a few extra steps we will need to follow to make sure the project is configured for hosting on Heroku. Check the logs on Heroku whenever you need to debug an error in your deployed app:
+
+```bash
+heroku logs --tail
+```
+
+### 5. Configure Your App for Deployment
+
+After each change you make, `git add`, `git commit` with a descriptive commit message. The work should always be backed up on GitHub (`git push origin master`) so that there is less chance that work can be lost.
+
+#### Use Heroku's PORT
+
+Because Heroku will be running our app on a dyno, we cannot decide which port it should listen on. Heroku will provide that information to our app as an environment variable. Therefore, it will be accessible in our code on the `process.env` object, which is globally available.
+
+The app should still work locally when we are not providing a `PORT` environment variable, so make sure there is a default value if `process.env.PORT` is `undefined`.
+
+```js
+const PORT = process.env.PORT || 9090;
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
+```
+
+#### Add a Start Script
+
+Make sure your `package.json` has a start script that will run your express app:
+
+```json
+"start": "node file-path.js",
+```
+
+This is what Heroku will automatically run once it has installed all dependencies.
+
+#### Specify The Node Version
+
+Define what version of Node your app will work well with. Check which version of Node you have running on your machine.
+
+```bash
+node --version
+```
+
+You should see an output (for example: "v12.6.0"), so we know the app should work with this major version of Node. We can specify that Heroku should use this version of Node for running the app in the `package.json`:
+
+```json
+{
+  "engines": {
+    "node": "12.x"
+  }
+}
+```
+
+#### Provide Sensitive Information as Environment Variables
+
+The `.env` file containing any sensitive information is `.gitignore`d and so will not be pushed up to GitHub _or_ Heroku. Therefore, this information will need to be provided to the app running on Heroku in some other way: environment variables.
+
+The Heroku CLI allows us to [set environment variables](https://devcenter.heroku.com/articles/config-vars) for the app running on Heroku.
+
+Check the current config:
+
+```bash
+heroku config
+```
+
+Set all sensitive keys as environment variables one-by-one:
+
+```bash
+heroku config:set GMAIL_ADDRESS=user@gmail.com
+```
+
+Check whether it has worked each time:
+
+```bash
+heroku config
+```
+
+### 6. Re-deploy
+
+Once the app is ready, re-deploy it:
+
+```bash
+git push origin master
+```
+
+### 7. Review Your App
+
+```bash
+heroku open
+```
+
+Any issues should be debugged with:
+
+```bash
+heroku logs --tail
+```
