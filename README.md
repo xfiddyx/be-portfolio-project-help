@@ -280,7 +280,7 @@ npm install nodemailer
 const nodemailer = require('nodemailer');
 
 const sendMail = (name, email, subject, message) => {
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER,
