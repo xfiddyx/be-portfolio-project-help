@@ -250,7 +250,7 @@ GMAIL_PASS=supersecretpass
 DESTINATION_EMAIL_ADDRESS=me@email.com
 ```
 
-- Use `.dotenv` to ensure these values are set as key-value pairs on Node's `process.env`:
+- Use `.dotenv` to ensure these values are set as key-value pairs on Node's `process.env`. `console.log` to confirm:
 
 ```js
 require('dotenv').config();
