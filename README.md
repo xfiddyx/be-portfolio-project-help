@@ -2,6 +2,12 @@
 
 **Don't fork this repository - create your own!**
 
+## Prior Knowledge
+
+- Familiarity with HTML and CSS from [Pre-course Section 3](https://github.com/northcoders/PRE-3).
+- Ability to create a basic express server
+- Understand how to handle asynchronous JavaScript with Promises
+
 ## Learning Objectives
 
 - Understand traditional web architecture
