@@ -180,7 +180,7 @@ Whatever your choice of view engine, the templates will need to be created in a 
 <!-- some more HTML -->
 ```
 
-- Use the `.render` method on the request to serve up your template as HTML.
+- In your controller, use the `.render` method on the response to serve up your template as HTML.
 
 ```js
 exports.contact = (req, res, next) => {
