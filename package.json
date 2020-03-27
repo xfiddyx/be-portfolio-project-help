@@ -1,0 +1,24 @@
+{
+  "name": "be-portfolio-project",
+  "version": "1.0.0",
+  "description": "**Don't fork this repository - create your own!**",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon listen.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xfiddyx/be-portfolio-project-help.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xfiddyx/be-portfolio-project-help/issues"
+  },
+  "homepage": "https://github.com/xfiddyx/be-portfolio-project-help#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
+}

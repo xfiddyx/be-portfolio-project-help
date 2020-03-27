@@ -1,0 +1,238 @@
+body {
+  margin: 0;
+  background: #f6f6f6;
+  font-family: 'Noto Sans KR:300', 'sans-serif';
+  font-weight: 300;
+}
+
+header {
+  background: #f6f6f6;
+}
+
+header ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  list-style-type: none;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  height: 75px;
+}
+header li {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*.logo {
+    float: center;
+    width: auto;
+    height: auto;
+    max-width: 150px; 
+    max-height: 150px;
+    background: #f6f6f6;
+    bottom:0;
+}*/
+
+nav {
+  justify-content: center;
+  margin: 0 auto;
+}
+
+nav a {
+  color: #000;
+  text-decoration: none;
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+  //transition: width .3s;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 60px;
+}
+
+h1 {
+  font-size: 40px;
+  background: #f6f6f6;
+  text-align: center;
+  font: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  margin-top: 100px;
+}
+
+h3 {
+  font-size: 20px;
+  background: #f6f6f6;
+  text-align: center;
+  font: 'Noto Sans KR', sans-serif;
+}
+h4 {
+  font-size: 10px;
+  text-align: center;
+  font: 'Noto Sans KR', sans-serif;
+}
+.container {
+  margin-top: 100px;
+}
+.hex-3-row {
+  display: table;
+  margin: 50px auto;
+}
+.hex {
+  display: inline-block;
+  width: 190px;
+  height: 110px;
+  color: white;
+  background-color: #ffe492;
+  position: relative;
+  z-index: 110;
+  margin: 15px 10px 15px 10px;
+  text-align: center;
+  line-height: 110px;
+}
+.hex::after {
+  content: '';
+  background-color: #ffe492;
+  height: 110px;
+  width: 190px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: rotate(60deg);
+  z-index: -1;
+}
+.hex::before {
+  content: '';
+  background-color: #ffe492;
+  height: 110px;
+  width: 190px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transform: rotate(-60deg);
+  z-index: -1;
+}
+
+#demo1 {
+  color: #000000;
+  text-transform: capitalize;
+  text-align: center;
+  bottom: 50%;
+  padding-top: 50%;
+  font-size: 1.5em;
+  z-index: 1;
+}
+
+#grid li:nth-child(3n + 2) {
+  margin: 0 5%;
+}
+#grid li:nth-child(6n + 4),
+#grid li:nth-child(6n + 5),
+#grid li:nth-child(6n + 6) {
+  margin-top: -5.9285714285%;
+  margin-bottom: -5.9285714285%;
+  -o-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+  -moz-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+  -webkit-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+  -ms-transform: translateX(50%) rotate(-60deg) skewY(30deg);
+  transform: translateX(50%) rotate(-60deg) skewY(30deg);
+}
+#grid li:nth-child(6n + 4) {
+  margin-left: 3.5%;
+}
+
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 60%;
+  justify-content: center;
+  font: 'Roboto' sans-serif;
+  font-size: 20px;
+  text-align: justify;
+}
+
+.wrapper2 {
+  background: #f6f6f6;
+  padding: 1em;
+}
+.wrapper3 {
+  background-color: #f6f6f6;
+  padding: 1em;
+}
+.googleform {
+  text-align: center;
+}
+
+@keyframes bg {
+  0% {
+    background-size: 0 3px, 3px 0, 0 3px, 3px 0;
+  }
+  25% {
+    background-size: 100% 3px, 3px 0, 0 3px, 3px 0;
+  }
+  50% {
+    background-size: 100% 3px, 3px 100%, 0 3px, 3px 0;
+  }
+  75% {
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 0;
+  }
+  100% {
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+  }
+}
+@keyframes bg {
+  0% {
+    background-size: 0 3px, 3px 0, 0 3px, 3px 0;
+  }
+  25% {
+    background-size: 100% 3px, 3px 0, 0 3px, 3px 0;
+  }
+  50% {
+    background-size: 100% 3px, 3px 100%, 0 3px, 3px 0;
+  }
+  75% {
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 0;
+  }
+  100% {
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+  }
+}
+
+.logo {
+  width: 25%;
+  margin: 2rem auto;
+  padding: 1em;
+
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, #ffe492 100%, #ffe492 100%),
+    linear-gradient(to right, #ffe492 100%, #ffe492 100%),
+    linear-gradient(to bottom, #ffe492 100%, #ffe492 100%),
+    linear-gradient(to right, #ffe492 100%, #ffe492 100%);
+  background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  animation: bg 1.25s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  -webkit-animation-play-state: paused; /* Chrome, Safari, Opera */
+  animation-play-state: paused;
+}
+
+.logo:hover {
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
